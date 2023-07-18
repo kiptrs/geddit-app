@@ -30,7 +30,8 @@
         </div>
         <ul class="list-group border-0 pt-0 mt-3">
             <Post v-for="post in posts" :post="post.data" :hidden="globalHiddenPosts.includes(post.data.permalink)"
-                @hide_post="hide_post" class="post-element" :data-permalink="post.data.permalink" />
+            @hide_post="hide_post" class="post-element" :data-permalink="post.data.permalink"
+            :class="{ 'post-not-hidden': !globalHiddenPosts.includes(post.data.permalink) }" />
         </ul>
         <div v-if="!scroll_loaded" class="progress " role="progressbar" aria-label="Basic example" aria-valuenow="0"
             aria-valuemin="0" aria-valuemax="100">
