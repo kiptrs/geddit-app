@@ -1,6 +1,6 @@
 <template>
-    <div class="d-flex position-relative background" :style="image_options.style">
-        <img :src="image_options.preview" class="position-relative theme-shadow" loading="lazy"
+    <div class="d-flex w-100 position-relative background" :style="image_options.style">
+        <img :src="image_options.preview" class="position-relative theme-shadow w-100" loading="lazy"
             @touchstart.passive="full = true" @touchcancel.passive="full = false" @touchmove="full = false"
             @touchend.passive="fullscreen">
     </div>
