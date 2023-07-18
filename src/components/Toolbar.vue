@@ -37,6 +37,13 @@
                     </div>
                 </router-link>
             </li>
+            <li class="nav-item">
+                <button class="nav-link fw-bold" aria-current="page" @click.passive="go_to_first_unseen">
+                    <div class="d-flex flex-column align-items-center">
+                        <h5 class="text-4 py-1 m-0 bi bi-arrow-bar-down"></h5>
+                    </div>
+                </button>
+            </li>
         </ul>
     </div>
 </template>
@@ -72,5 +79,9 @@ async function go_search() {
         return
     }
     router.push('/search');
+}
+
+async function go_to_first_unseen(){
+    (document.querySelector('.post-element.post-not-hidden')).scrollIntoView();
 }
 </script>
