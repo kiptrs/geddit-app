@@ -82,6 +82,11 @@ async function go_search() {
 }
 
 async function go_to_first_unseen(){
-    (document.querySelector('.post-element.post-not-hidden')).scrollIntoView();
+    const firstUnseen = document.querySelector('.post-element.post-not-hidden');
+    if(firstUnseen){
+        firstUnseen.scrollIntoView();
+    } else {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
 }
 </script>
