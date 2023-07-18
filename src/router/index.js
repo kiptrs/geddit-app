@@ -7,6 +7,7 @@ import Post from '/components/Post.vue';
 import Search from '/components/Search.vue';
 import Subreddit from '/components/Subreddit.vue';
 import Subreddits from '/components/Subreddits.vue';
+import SubredditsGroup from '/components/SubredditsGroup.vue';
 import Settings from '/components/Settings.vue';
 import Gallery from '/components/Gallery.vue';
 
@@ -50,6 +51,11 @@ const routes = [
         path: "/r/:id",
         component: Subreddit,
         name: "subreddit"
+    },
+    {
+        path: "/rg/:id",
+        component: SubredditsGroup,
+        name: "subredditsgroup"
     },
 ];
 
