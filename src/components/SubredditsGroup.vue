@@ -1,35 +1,18 @@
 <template>
-  <div
-    v-if="!posts.length"
-    class="d-flex justify-content-center align-items-center cover-all position-absolute"
-  >
+  <div v-if="!posts.length" class="d-flex justify-content-center align-items-center cover-all position-absolute">
     <div class="d-flex circle bg-6 p-2">
       <div class="spinner-border text-0" role="status"></div>
     </div>
   </div>
   <TopBar ref="topbar" subreddit="Popular" @params_changed="params_changed" />
   <ul class="list-group border-0 pt-0 mt-3">
-    <Post
-      v-for="post in posts"
-      :post="post.data"
-      :hidden="globalHiddenPosts.includes(post.data.permalink)"
-      @hide_post="hide_post"
-      class="post-element"
-      :data-permalink="post.data.permalink"
-      :class="{
+    <Post v-for="post in posts" :post="post.data" :hidden="globalHiddenPosts.includes(post.data.permalink)"
+      @hide_post="hide_post" class="post-element" :data-permalink="post.data.permalink" :class="{
         'post-not-hidden': !globalHiddenPosts.includes(post.data.permalink),
-      }"
-    />
+      }" />
   </ul>
-  <div
-    v-if="!scroll_loaded"
-    class="progress"
-    role="progressbar"
-    aria-label="Basic example"
-    aria-valuenow="0"
-    aria-valuemin="0"
-    aria-valuemax="100"
-  >
+  <div v-if="!scroll_loaded" class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="0"
+    aria-valuemin="0" aria-valuemax="100">
     <div class="progress-bar"></div>
   </div>
 </template>
@@ -86,10 +69,14 @@ async function get_posts() {
 async function scroll() {
   scroll_loaded.value = false;
 
-  let response = await geddit.getSubmissions(topbar.value.sort, "popular", {
-    after: after.value,
-    t: topbar.value.time,
-  });
+  let response = await geddit.getSubmissions(
+    topbar.value.sort,
+    router.currentRoute.value.params.id,
+    {
+      after: after.value,
+      t: topbar.value.time,
+    }
+  );
   if (!response || !response.posts.length) {
     after.value = null;
     scroll_loaded.value = true;
@@ -150,7 +137,7 @@ function scroll_handle(el) {
   handlePostsInViewport();
   if (
     el.target.scrollTop + el.target.clientHeight >=
-      el.target.scrollHeight - window.innerWidth &&
+    el.target.scrollHeight - window.innerWidth &&
     scroll_loaded.value &&
     after.value
   ) {
