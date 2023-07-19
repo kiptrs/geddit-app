@@ -4,7 +4,7 @@
       <div class="spinner-border text-0" role="status"></div>
     </div>
   </div>
-  <TopBar ref="topbar" subreddit="Popular" @params_changed="params_changed" />
+  <TopBar ref="topbar" subreddit="Following" @params_changed="params_changed" />
   <ul class="list-group border-0 pt-0 mt-3">
     <Post v-for="post in posts" :post="post.data" :hidden="globalHiddenPosts.includes(post.data.permalink)"
       @hide_post="hide_post" class="post-element" :data-permalink="post.data.permalink" :class="{

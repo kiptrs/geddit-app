@@ -14,7 +14,10 @@
             <li class="nav-item">
                 <button class="nav-link fw-bold" aria-current="page" @click.passive="go_subreddits_group">
                     <div class="d-flex flex-column align-items-center">
-                        <h5 class="text-4 py-1 m-0 bi bi-houses"></h5>
+                        <h5 class="text-4 py-1 m-0 bi" :class="{
+                            'bi-houses-fill': path.startsWith('/rg'),
+                            'bi-houses': !path.startsWith('/rg'),
+                        }"></h5>
                     </div>
                 </button>
             </li>

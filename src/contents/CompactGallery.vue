@@ -1,5 +1,5 @@
 <template>
-    <div class="d-flex cover-50 position-relative">
+    <div class="d-flex w-100 position-relative">
         <div class="wrapper theme-shadow">
             <div v-for="image in images">
                 <img :src="image.preview" @click.passive="fullscreen(image)">
