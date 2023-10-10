@@ -6,6 +6,7 @@ import Post from '/components/Post.vue';
 import Search from '/components/Search.vue';
 import Subreddit from '/components/Subreddit.vue';
 import Subreddits from '/components/Subreddits.vue';
+import MySubreddits from '/components/MySubreddits.vue';
 import Settings from '/components/Settings.vue';
 import Gallery from '/components/Gallery.vue';
 import Preview from '/components/Preview.vue';
@@ -66,6 +67,14 @@ const routes = [
         name: "subreddit",
         meta: {
             component: "subreddit"
+        },
+    },
+    {
+        path: "/mr/:id/:sort?",
+        component: MySubreddits,
+        name: "mySubreddits",
+        meta: {
+            component: "mySubreddits"
         },
     },
     {

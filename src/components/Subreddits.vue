@@ -13,6 +13,9 @@
     <div class="display-flex justify-content-center p-3" v-show="!subreddits.length">
         <span class="title-medium text-4">Explore and follow some subreddits!</span>
     </div>
+    <div class="m-3 list-item-3 md-foreground md-rounded-12 space-between-16" @click.passive="open_subreddits">
+        <span>My Subreddits</span>
+    </div>
     <div v-show="subreddits.length" class="cards mt-3">
         <CompactSubreddit v-for="subreddit in subreddits" :post="subreddit" />
     </div>
@@ -55,6 +58,10 @@ async function get_subreddits() {
 
 async function open_subreddit(sub) {
     router.push("/r/" + sub.display_name)
+}
+
+async function open_subreddits() {
+    router.push("/mr/" + subreddits.value.map(sub => sub.display_name).join("+"))
 }
 
 onBeforeMount(() => {
