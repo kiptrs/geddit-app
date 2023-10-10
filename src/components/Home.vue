@@ -75,7 +75,32 @@ async function params_changed() {
     get_posts();
 }
 
+import { store, silently_hide } from '/js/store.js'
+
+async function silently_hide_post(postid) {
+    // check if post is already silently hidden:
+    if (store.silently_hidden.includes(postid)) {
+        return
+    } else {
+        silently_hide(postid);
+    }
+}
+
+async function handlePostsInViewport() {
+    const postElements = document.querySelectorAll('.card-container');
+
+    postElements.forEach((postElement, index) => {
+        const rect = postElement.getBoundingClientRect();
+        if (rect.bottom < 0) {
+            // The post element is above the viewport
+            // Add your logic here
+            silently_hide_post(postElement.dataset.postid);
+        }
+    });
+}
+
 function scroll_handle(el) {
+    handlePostsInViewport();
     if (el.target.scrollTop + el.target.clientHeight >= el.target.scrollHeight - window.innerWidth && scroll_loaded.value && after.value) {
         scroll();
     }

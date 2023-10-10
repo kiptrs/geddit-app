@@ -62,7 +62,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import { clear_hidden } from '/js/store.js';
+import { clear_hidden, save_hidden } from '/js/store.js';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
@@ -182,6 +182,7 @@ async function close_dialog() {
 }
 
 async function refresh() {
+    save_hidden();
     router.go();
 }
 

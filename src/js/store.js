@@ -3,28 +3,45 @@
 import { reactive } from "vue";
 
 const store = reactive({
-    hidden: JSON.parse(localStorage.getItem('hidden_posts')) || [],
-    title_size: JSON.parse(localStorage.getItem("title_size")) || 'title-medium',
-})
+  hidden: JSON.parse(localStorage.getItem("hidden_posts")) || [],
+  silently_hidden:
+    JSON.parse(localStorage.getItem("silently_hidden_posts")) || [],
+  title_size: JSON.parse(localStorage.getItem("title_size")) || "title-medium",
+});
 
 async function hide(id) {
-    store.hidden.push(id);
+  store.hidden.push(id);
+}
+
+async function silently_hide(id) {
+  store.silently_hidden.push(id);
 }
 
 async function unhide(id) {
-    store.hidden = store.hidden.filter(post_id => post_id != id);
+  store.hidden = store.hidden.filter((post_id) => post_id != id);
 }
 
 function save_hidden() {
-    localStorage.setItem('hidden_posts', JSON.stringify(store.hidden))
+  localStorage.setItem(
+    "hidden_posts",
+    JSON.stringify([...store.hidden, ...store.silently_hidden])
+  );
 }
 
 async function clear_hidden() {
-    store.hidden = [];
+  store.hidden = [];
 }
 
 async function is_hidden(id) {
-    return store.hidden.includes(id);
+  return store.hidden.includes(id);
 }
 
-export { store, hide, unhide, is_hidden, save_hidden, clear_hidden }
+export {
+  store,
+  hide,
+  unhide,
+  is_hidden,
+  save_hidden,
+  clear_hidden,
+  silently_hide,
+};

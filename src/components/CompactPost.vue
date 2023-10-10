@@ -1,5 +1,5 @@
 <template>
-    <div class="card-container space-between-16 position-relative" @click.passive="handle_touch">
+    <div class="card-container space-between-16 position-relative" @click.passive="handle_touch" :data-postid="post.id">
         <div class="card-header position-relative" :class="{ 'sticky': post.stickied }">
             <div class="d-flex flex-wrap align-items-center text-4">
                 <span class="label-medium text-11 ct" @click.passive="open_subreddit">r/{{ post.subreddit
