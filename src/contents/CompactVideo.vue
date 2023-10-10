@@ -2,7 +2,7 @@
     <div class="d-flex cover-50 position-relative md-rounded-12 md-background"
         :style="{ 'aspect-ratio': dimensions.width + '/' + dimensions.height + '!important' }">
         <div ref="wrapper" class="video-wrapper">
-            <video ref="video" class="position-relative ct" :poster="get_poster()" muted loop
+            <video ref="video" class="position-relative ct" :poster="get_poster()" muted loop crossorigin
                 @click.prevent="emit('open_post')">
             </video>
             <div v-if="paused" class="video-paused">

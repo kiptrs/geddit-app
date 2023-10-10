@@ -14,6 +14,7 @@
             </div>
             <span class="text-6 dpy-4" :class="store.title_size">{{ post.data.title }}</span>
             <span class="label-medium text-10" @click.passive="open_user">u/{{ post.data.author }}</span>
+            <a target="_blank" :href="`https://www.reddit.com${props.post.data.permalink}`">Link to Reddit</a>
             <div class="d-flex align-items-center dpt-16">
                 <div class="md-icon-container-with-label">
                     <span class="material-icons">arrow_upward</span>
@@ -71,6 +72,11 @@ const props = defineProps({
         required: true
     }
 })
+
+async function postLink() {
+    let redditDomain = JSON.parse(localStorage.getItem("share_old_reddit")) ? "https://old.reddit.com" : "https://www.reddit.com";
+    return redditDomain + props.post.data.permalink
+}
 
 async function share() {
     let redditDomain = JSON.parse(localStorage.getItem("share_old_reddit")) ? "https://old.reddit.com" : "https://www.reddit.com";
